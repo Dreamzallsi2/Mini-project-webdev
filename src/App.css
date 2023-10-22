@@ -1,0 +1,431 @@
+body{
+  margin: 0;
+  font-family: 'Noto Sans Thai', sans-serif;
+  background-color: rgb(235, 235, 235);
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0px 50px 0px;
+  color: white;
+  background-color: rgb(40, 40, 119);
+}
+
+.logo{
+  display: flex;
+  flex-direction: row;
+}
+
+.logo img{
+  position: relative;
+  top: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+.order-img{
+  position: absolute;
+  top: 10px;
+  right: 150px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.order-box{
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  width: 570px;
+  height: 250px;
+  padding: 10px;
+  z-index: 1;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+  overflow: scroll;
+}
+
+.order-box button{
+  position: relative;
+  left: 50%;
+  width: 150px;
+  height: 50px;
+  margin: 0px 0px 0px -85px;
+  font-size: 18px;
+  color: white;
+  background-color: rgb(40, 40, 119);
+  border-radius: 15px;
+}
+
+.order-box button:hover{
+  background-color: rgb(77, 77, 133);
+}
+
+.warn{
+  position: relative;
+  top: 35%;
+  text-align: center;
+  color: black;
+}
+
+.order{
+  display: flex;
+  height: 45px;
+  margin: 10px 0px 10px;
+}
+
+.order .list{
+  display: flex;
+  width: 500px;
+  color: black;
+  background-color: rgb(240, 244, 255);
+  border: 1.5px solid rgb(40, 40, 119);
+  border-radius: 10px;
+}
+
+.list div{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.list .title, .total .title{
+  font-size: 12px;
+  margin: 0;
+}
+
+.list .ret, .total .ret{
+  margin: 0px;
+}
+
+.order .total{
+  width: 70px;
+  margin: 0px 5px 0px;
+  text-align: center;
+  color: white;
+  background-color: rgb(40, 40, 119);
+  border: 1.5px solid rgb(40, 40, 119);
+  border-radius: 10px;
+}
+
+.restaurant{
+  width: 150px;
+  margin: 0px 10px 10px;
+  background-color: white;
+  border: 1.5px solid rgb(179, 179, 240);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.restaurant p{
+  margin: 0px 40px 5px;
+}
+
+.restaurant .state{
+  width: 100%;
+  margin: 0px 37px 10px;
+  font-size: 12px;
+}
+
+.restaurant span{
+  color: rgb(1, 196, 24);
+}
+
+.restaurant img{
+  width: 150px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.restaurant:active{
+  border: 1.5px solid rgb(40, 40, 119);
+}
+
+.restaurant:hover{
+  background-color: rgb(240, 244, 255);
+}
+
+.content{
+  position: relative;
+  left: 50%;
+  width: 840px;
+  margin: 40px 0px 0px -420px;
+  padding: 0px 0px 25px;
+  background-color: white;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+}
+
+.mode{
+  display: flex;
+  height: 50px;
+  padding: 0px 10px 0px;
+  background-color: rgb(40, 40, 119);
+  border-radius: 20px 20px 0px 0px;
+}
+
+.mode p{
+  width: 80px;
+  height: 30px;
+  padding: 5px 0px 0px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.mode .deposit{
+  color: rgb(40, 40, 119);
+  background-color: white;
+}
+
+.mode .derivery:hover{
+  background-color: rgb(77, 77, 133);
+}
+
+.canteen, .ordered{
+  padding: 15px 15px 0px;
+}
+
+.canteen h3, .ordered h3{
+  margin: 0px 10px 10px;
+}
+
+.scroll-c{
+  display: flex;
+  justify-content: space-between;
+  height: 160px;
+  margin: 20px 10px 0px;
+  overflow: scroll;
+  scrollbar-width: thin;
+}
+
+.scroll-p{
+  height: 260px;
+  margin: 20px 10px 0px;
+  background-color: rgb(240, 244, 255);
+  border: 1.5px solid rgb(179, 179, 240);
+  border-radius: 15px;
+  overflow-y: scroll;
+}
+
+.background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.popup-order{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  padding: 20px;
+  margin: -200px -265px 0px;
+  width: 500px;
+  height: 400px;
+  z-index: 1;
+  overflow: auto;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.popup-order h2{
+  align-self: center;
+}
+
+.popup-order input{
+  margin: 5px 5px 15px;
+  padding: 5px 0px 5px 10px;
+  border: 1.5px solid rgb(77, 77, 133);
+  border-radius: 10px;
+  transition: 0.5s;
+  outline: none;
+}
+
+.popup-order input:focus{
+  background-color: rgb(240, 244, 255);
+}
+
+.popup-order .name{
+  width: 280px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.popup-order .price{
+  width: 80px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.popup-order .amount{
+  width: 70px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.popup-order input[type="textarea"]{
+  width: 475px;
+  height: 140px;
+  font-size: 16px;
+  border: 1.5px solid rgb(77, 77, 133);
+}
+
+.popup-order button{
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: 170px;
+  height: 60px;
+  margin: 0px 0px 0px -85px;
+  font-size: 18px;
+  color: white;
+  background-color: rgb(40, 40, 119);
+  border-radius: 20px;
+}
+
+.popup-order button:hover{
+  background-color: rgb(77, 77, 133);
+
+}
+.close {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-img{
+  position: absolute;
+  top: 15px;
+  right: 70px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.profile-box{
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  width: 230px;
+  height: 230px;
+  padding: 0px 20px 0px;
+  z-index: 1;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+  overflow: scroll;
+}
+
+.profile-box p{
+  font-size: 12px;
+  margin: 5px 0px 3px;
+  color: black;
+}
+
+.profile-box input{
+  width: 210px;
+  height: 40px;
+  padding: 0px 10px 0px;
+  font-size: 20px;
+  border: 1.5px solid rgb(40, 40, 119);
+  border-radius: 10px;
+  outline: none;
+}
+
+.profile-box input:focus{
+  background-color: rgb(240, 244, 255);
+}
+
+.detail{
+  display: flex;
+  height: 60px;
+  color: black;
+  border-radius: 10px;
+}
+
+.detail .name{
+  align-self: center;
+  width: 120px;
+  margin: -10px 10px 0px 0px;
+  padding: 10px 0px 10px;
+  color: rgb(92, 92, 138);
+  text-align: center;
+  border: 4px solid rgb(141, 141, 179);
+  border-radius: 10px;
+}
+
+.detail>div{
+  align-self: center;
+  width: 470px;
+  height: 50px;
+  margin: 3px 0px 0px;
+  font-size: 14px;
+  overflow-y: scroll;
+}
+
+.detail>div>div{
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin: 0px 0px 5px;
+  background-color: rgb(254, 247, 255);
+  border: 1.5px solid rgb(160, 74, 170);
+  border-radius: 7px;
+}
+
+.detail>div>div>p, .ordered .title p{
+  text-align: center;
+  width: 90px;
+}
+
+.ordered .title{
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 470px;
+  height: 10px;
+  left: 140px;
+  font-size: 10px;
+}
+
+.detail .total, .detail .state{
+  text-align: center;
+  width: 60px;
+  height: 30px;
+  margin: 0px 0px  10px 10px;
+  padding: 10px 0px 0px;
+  color: rgb(28, 43, 177);
+  border: 3px solid rgb(28, 43, 177);
+  border-radius: 10px;
+}
+
+.detail .state{
+  padding: 5px 0px 5px;
+  color: rgb(199, 175, 38);
+  background-color: rgb(250, 242, 198);
+  border: 3px solid rgb(199, 175, 38);
+}
