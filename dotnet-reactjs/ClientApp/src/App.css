@@ -369,15 +369,13 @@ nav{
 
 .detail .name{
   align-self: center;
-  width: 160px;
-  margin: 0px 10px 0px 0px;
-  height: 60px;
-  padding: 0;
+  width: 120px;
+  margin: -10px 10px 0px 0px;
+  padding: 10px 0px 10px;
   color: rgb(92, 92, 138);
-  text-align: left;
+  text-align: center;
   border: 4px solid rgb(141, 141, 179);
   border-radius: 10px;
-  font-size: smaller;
 }
 
 .detail>div{
@@ -431,33 +429,3 @@ nav{
   background-color: rgb(250, 242, 198);
   border: 3px solid rgb(199, 175, 38);
 }
-<<<<<<< Updated upstream
-=======
-.state_button {
-  width: 80px;
-  height: 45px;
-  padding: 5px 0px 5px;
-  color: #8B4513;
-  background-color: #DEB887;
-  border: 3px solid #8B4513;
-  border-radius: 10px; 
-  margin-left: 10px;
-}
-.state_button:hover{
-  border: 3px solid #B8860B;
-  color: #B8860B;
-  cursor: pointer;
-}
-.state_button_click {
-  width: 70px;
-  height: 45px;
-  padding: 5px 0px 5px;
-  color: rgb(38, 199, 51);
-  background-color: rgb(198, 250, 218);
-  border: 3px solid rgb(38, 199, 51);
-  border-radius: 10px; 
-  margin-left: 10px;
-}
-
-
->>>>>>> Stashed changes

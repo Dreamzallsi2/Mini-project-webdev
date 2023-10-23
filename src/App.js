@@ -1,6 +1,7 @@
 import './App.css';
 import { Component , useState} from 'react';
 
+<<<<<<< Updated upstream
 class Restaurant extends Component{
   state = {popup : {name : this.props.name, switch : true}}
   render(){
@@ -11,6 +12,12 @@ class Restaurant extends Component{
         <p class="state">สถานะ : <span>เปิดอยู่</span></p>
       </div>
     );
+=======
+class Ordered extends Component {
+  handleOrderReceived = () => {
+    this.props.onOrderReceived(this.props.content.username);
+    
+>>>>>>> Stashed changes
   }
 }
 
@@ -25,6 +32,7 @@ class Ordered extends Component{
           <p>จำนวน</p>
           <p>ระบุ</p>
         </div>
+<<<<<<< Updated upstream
         <div class="detail">
           <h3 class="name">{this.props.content.username}</h3>
           <div>
@@ -35,6 +43,22 @@ class Ordered extends Component{
                                                   <p>{ordered.amount}</p> 
                                                   <p>{ordered.textarea}</p>
                                                 </div>)}
+=======
+        <div className="detail">
+          <h3 className="name">ชื่อผู้สั่ง:{this.props.content.username} <br></br>เบอร์โทร:{this.props.content.phon}<br></br>ที่อยู่:{this.props.content.adress}</h3>
+          
+          <div>
+            {this.props.content.list_ordered.map((ordered) => (
+              <div key={ordered.name}>
+                <p>{ordered.name}</p>
+                <p>{ordered.food}</p>
+                <p>{ordered.price}</p>
+                <p>{ordered.amount}</p>
+                <p>{ordered.textarea}</p>
+                
+              </div>
+            ))}
+>>>>>>> Stashed changes
           </div>
           <h3 class="total">{this.props.content.total}</h3>
           {this.props.content.state === false && <h3 class="state">รอ</h3>}
@@ -44,11 +68,27 @@ class Ordered extends Component{
   }
 }
 
+<<<<<<< Updated upstream
 class Order extends Component{
   render(){
     return (
       <div class="order">
         <div class="list">
+=======
+class Ordered_Received extends Component {
+  render() {
+    return this.props.content.state === true ? (
+      <div className="ordered">
+        <div className="title">
+          <p>ชื่อร้าน</p>
+          <p>เมนู</p>
+          <p>ราคา</p>
+          <p>จำนวน</p>
+          <p>ระบุ</p>
+        </div>
+        <div className="detail">
+        <h3 className="name">ชื่อผู้สั่ง:{this.props.content.username} <br></br>เบอร์โทร:{this.props.content.phon}<br></br>ที่อยู่:{this.props.content.adress}</h3>
+>>>>>>> Stashed changes
           <div>
             <p class="title">ชื่อร้าน</p>
             <p class="ret">{this.props.content.name}</p>
@@ -134,8 +174,36 @@ function App(){
   const [switchorder, setSwitchorder] = useState(false);
   const [switchprofile, setSwitchprofile] = useState(true);
 
+<<<<<<< Updated upstream
   const [list_order, setListOrderrder] = useState([]);
   const [list_ordered, setListOrderrdered] = useState([]);
+=======
+  const [initialSampleOrders, setInitialSampleOrders] = useState([
+    {
+      id:'1',
+      username: 'John',
+      phon:'0810871167' ,
+      adress:'วัดหนองสิว',
+      list_ordered: [
+        { name: 'ร้าน A', food: 'ก๋วยเตี๋ยว', price: 50, amount: 2, textarea: 'ไม่ใส่ผัก' },
+        { name: 'ร้าน B', food: 'ผัดผัก', price: 60, amount: 1, textarea: 'ไม่ใส่รสเจียว'},
+      ],
+      total: 160,
+      state: false,
+    },
+    {
+      id:'2',
+      username: 'Alice',
+      phon:'0810871167',
+      adress:'วัดเขาอีโต้',
+      list_ordered: [
+        { name: 'ร้าน C', food: 'ข้าวมันไก่', price: 40, amount: 1, textarea: 'เผ็ดน้อย' },
+      ],
+      total: 40,
+      state: false,
+    },
+  ]);
+>>>>>>> Stashed changes
 
   const setSwitch = (data) => {
     setSwitchpopup(data.switch)
