@@ -23,28 +23,28 @@ namespace miniprojectweb.Controllers
         {
             Name = "sarawut",
             Tel = "0925402852",
-            Address = "somewhere"
+            Address = "24/1 moo 5 maphong panthong chonburi"
         },
         list_ordered = new List<Ordered>
         {
             new Ordered
             {
-                Name = "ร้านอาหาร",
-                Food = "awd2",
-                Price = 22,
-                Amount = 23,
-                Textarea = "awd"
+                Name = "ร้าน P&A",
+                Food = "กะเพราหมูกรอบโบราณ",
+                Price = 65,
+                Amount = 1,
+                Textarea = "ไม่ใส่กะเพรา"
             },
             new Ordered
             {
-                Name = "ร้านอาหาร",
-                Food = "dream",
-                Price = 12345,
-                Amount = 22,
+                Name = "ร้านน้ำ",
+                Food = "น้ำแดงโซดา",
+                Price = 40,
+                Amount = 2,
                 Textarea = "No vegetable"
             }
         },
-        Total = 272096,
+        Total = 145,
         State = false
     }
 };
