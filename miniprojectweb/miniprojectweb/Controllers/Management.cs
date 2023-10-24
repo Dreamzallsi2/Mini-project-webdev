@@ -1,0 +1,154 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using miniprojectweb.Models;
+using System.Diagnostics;
+using System.Net;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace miniprojectweb.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class Management : ControllerBase
+    {
+
+        private List<OrderData> _orderDataList = new List<OrderData>();
+        private static List<OrderData> _orderDataList2 = new List<OrderData>
+{
+    new OrderData
+    {
+        Id = 1,
+        User = new User
+        {
+            Name = "sarawut",
+            Tel = "0925402852",
+            Address = "somewhere"
+        },
+        list_ordered = new List<Ordered>
+        {
+            new Ordered
+            {
+                Name = "ร้านอาหาร",
+                Food = "awd2",
+                Price = 22,
+                Amount = 23,
+                Textarea = "awd"
+            },
+            new Ordered
+            {
+                Name = "ร้านอาหาร",
+                Food = "dream",
+                Price = 12345,
+                Amount = 22,
+                Textarea = "awdawd"
+            }
+        },
+        Total = 272096,
+        State = false
+    }
+};
+        
+        /*
+        // GET api/<ValuesController>/5
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            // Replace this with code to fetch your OrderData object based on the provided 'id'
+            OrderData orderData = GetOrderDataById(id);
+
+            if (orderData == null)
+            {
+                return NotFound(); // Return a 404 Not Found if the data is not found
+            }
+
+            return Ok(orderData); // Return the OrderData object as JSON
+        }
+
+        // Your other controller methods here */
+
+        // Example method to fetch OrderData by ID (replace with your actual data retrieval logic)
+
+        [HttpGet]
+        public IActionResult GetAllOrderData()
+        {
+            try
+            {
+                // Return a success response with the list of orders
+                Debug.Print("hey I'mhere");
+                return Ok(_orderDataList2);
+            }
+            catch (Exception ex)
+            {
+                // Return an error response with the error message
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetOrderDataById(int id)
+        {
+            try
+            {
+                // Find the order with the specified ID in the list of orders
+                var order = _orderDataList.FirstOrDefault(o => o.Id == id);
+
+                if (order == null)
+                {
+                    // Return a not found response if the order is not found
+                    return NotFound();
+                }
+
+                // Return a success response with the order object
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                // Return an error response with the error message
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Post([FromBody] OrderData data)
+        {
+            try
+            {
+                // Create a new order object with the parsed data
+                var order = new OrderData
+                {
+                    Id = data.Id,
+                    User = data.User,
+                    list_ordered = data.list_ordered,
+                    Total = data.Total,
+                    State = data.State
+                };
+
+                // Add the order to the list of orders
+                _orderDataList2.Add(order);
+
+                // Return a success response with the new order object
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                // Return an error response with the error message
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // PUT api/<ValuesController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE api/<ValuesController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
+    }
+}

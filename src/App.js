@@ -1,223 +1,334 @@
-import './App.css';
-import { Component , useState} from 'react';
+import "./App.css";
+import { Component, useState } from "react";
+import Restaurant from "./Restaurant";
+import Order from "./Order";
+import Ordered from "./Ordered";
+import DeriveryOrdered from "./DeriveryOrdered";
 
-class Restaurant extends Component{
-  state = {popup : {name : this.props.name, switch : true}}
-  render(){
-    return(
-      <div class="restaurant" onClick={() => this.props.popupCallback(this.state.popup)}>
-        <img src={this.props.img}></img>
-        <p>{this.props.name}</p>
-        <p class="state">สถานะ : <span>เปิดอยู่</span></p>
-      </div>
+function App() {
+  const [user, setUser] = useState({ name: "", tel: "", address: "" });
+  const [order, setOrder] = useState({
+    name: "",
+    food: "",
+    price: 0,
+    amount: 0,
+    textarea: "",
+  });
+
+  const [Switch, setSwitch] = useState({
+    mode: true,
+    popup: false,
+    order: false,
+    profile: false,
+  });
+
+  const [list_order, setListOrder] = useState([]);
+  const [list_ordered, setListOrdered] = useState([]);
+
+  const [derivery_list_order, setDeriveryListOrder] = useState([]);
+  const [derivery_list_accept, setDeriveryListAccept] = useState([]);
+
+  const restaurantCallback = (data) => {
+    setSwitch({ ...Switch, popup: !Switch.popup });
+    setOrder({ ...order, name: data.name });
+  };
+
+  const idCallback = (id) => {
+    const add_id = list_ordered.map((obj) => {
+      if (obj.id === id) {
+        return { ...obj, state: true };
+      }
+      return obj;
+    });
+    setListOrdered(add_id);
+    list_ordered.map((obj) => {
+      if (obj.id === id) {
+        setDeriveryListAccept([obj, ...derivery_list_accept]);
+      }
+    });
+    setDeriveryListOrder((current) =>
+      current.filter((order) => {
+        return order.id !== id;
+      })
     );
-  }
-}
+  };
 
-class Ordered extends Component{
-  render(){
-    return (
-      <div class="ordered">
-        <div class="title">
-          <p>ชื่อร้าน</p>
-          <p>เมนู</p>
-          <p>ราคา</p>
-          <p>จำนวน</p>
-          <p>ระบุ</p>
-        </div>
-        <div class="detail">
-          <h3 class="name">{this.props.content.username}</h3>
-          <div>
-          {this.props.content.list_ordered.map((ordered) =>  <div>
-                                                  <p>{ordered.name}</p> 
-                                                  <p>{ordered.food}</p> 
-                                                  <p>{ordered.price}</p> 
-                                                  <p>{ordered.amount}</p> 
-                                                  <p>{ordered.textarea}</p>
-                                                </div>)}
-          </div>
-          <h3 class="total">{this.props.content.total}</h3>
-          {this.props.content.state === false && <h3 class="state">รอ</h3>}
-        </div>
-      </div>
-    );
-  }
-}
+  const addOrder = () => {
+    setListOrder([order, ...list_order]);
+    setOrder({});
+    setSwitch({ ...Switch, popup: false });
+  };
 
-class Order extends Component{
-  render(){
-    return (
-      <div class="order">
-        <div class="list">
-          <div>
-            <p class="title">ชื่อร้าน</p>
-            <p class="ret">{this.props.content.name}</p>
-          </div>
-          <div>
-            <p class="title">เมนู</p>
-            <p class="ret">{this.props.content.food}</p>
-          </div>
-          <div>
-            <p class="title">ราคา</p>
-            <p class="ret">{this.props.content.price}</p>
-          </div>
-          <div>
-            <p class="title">จำนวน</p>
-            <p class="ret">{this.props.content.amount}</p>
-          </div>
-          <div>
-            <p class="title">ระบุ</p>
-            <p class="ret">{this.props.content.textarea}</p>
-          </div>
-        </div>
-        <div class="total">
-            <p class="title">รวม</p>
-            <p class="ret">{this.props.content.price * this.props.content.amount}</p>
-        </div>
-      </div>
-    );
-  }
-}
-
-class PopupOrder extends Component{
-  state = {order : {name : this.props.name, food : "", price : "", amount : "", textarea : ""}};
-  render(){
-    return (
-      <div class="background">
-        <div class="popup-order">
-          <h2>{this.props.name}</h2>
-          <from>
-            <input 
-              class="name" 
-              type="text" 
-              value={this.state.order.food} 
-              placeholder="ชื่ออาหาร"
-              onChange={(event) => this.setState({ order: {...this.state.order, food: event.target.value,},})}>
-            </input>
-            <input 
-              class="price" 
-              type="number" 
-              value={this.state.order.price} 
-              placeholder="ราคา"
-              onChange={(event) => this.setState({ order: {...this.state.order, price: event.target.value,},})}>
-            </input>
-            <input 
-              class="amount" 
-              type="number" 
-              value={this.state.order.amount} 
-              placeholder="จำนวน"
-              onChange={(event) => this.setState({ order: {...this.state.order, amount: event.target.value,},})}>
-              </input>
-            <input 
-              value={this.state.order.textarea} 
-              type="textarea" 
-              placeholder="หมายเหตุ เช่น ไม่ใส่ผัก"
-              onChange={(event) => this.setState({ order: {...this.state.order, textarea: event.target.value,},})}>
-              </input>
-            <button onClick={() => this.props.orderCallback(this.state.order)}>ใส่ตระกร้า</button>
-          </from>
-          <div class="close" onClick={() => this.props.popupCallback(false)}>&times;</div>
-        </div>
-      </div>
-    );
-  }
-}
-
-function App(){ 
-  const [username, setUsername] = useState("");
-  const [usertel, setUsertel] = useState("");
-  const [userlocation, setUserlocation] = useState("");
-  
-  const [namerestuarant, setNamerestuarant] = useState("");
-
-  const [switchpopup, setSwitchpopup] = useState(false);
-  const [switchorder, setSwitchorder] = useState(false);
-  const [switchprofile, setSwitchprofile] = useState(true);
-
-  const [list_order, setListOrderrder] = useState([]);
-  const [list_ordered, setListOrderrdered] = useState([]);
-
-  const setSwitch = (data) => {
-    setSwitchpopup(data.switch)
-    setNamerestuarant(data.name)
-  }
-
-  const addListOrder = (data) => {
-    setListOrderrder([data, ...list_order])
-  }
-
-  const submitOrder = (data) => {
+  const submitOrder = () => {
     let sum = 0;
-    data.forEach(order => {
+    list_order.forEach((order) => {
       sum += order.price * order.amount;
     });
-    let ordered = {username : username, list_ordered : data, total : sum, state : false}
-    setListOrderrdered([ordered, ...list_ordered])
-    setListOrderrder([])
-  }
+    let ordered = {
+      id: list_ordered.length + 1,
+      user: user,
+      list_ordered: list_order,
+      total: sum,
+      state: false,
+    };
+    fetch("https://localhost:7031/api/Management", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(ordered),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((responseData) => {
+        // Assuming the response contains a message property
+        console.log("Response:", responseData);
+
+        // Display a success message or handle the response data
+        const successMessage = responseData.message;
+        if (successMessage) {
+          alert(successMessage);
+        }
+
+        // You can also redirect or perform other actions based on the response data
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Display an error message or handle the error as needed
+      });
+
+    setListOrdered([ordered, ...list_ordered]);
+    setDeriveryListOrder([ordered, ...derivery_list_order]);
+    setListOrder([]);
+    setSwitch({ ...Switch, order: false });
+  };
 
   return (
     <div>
       <nav>
-        <div class="logo">
+        <div className="logo">
           <img src="https://www.gstatic.com/android/keyboard/emojikitchen/20230418/u1faa4/u1faa4_u1f35a.png"></img>
           <h3>Bitfood</h3>
         </div>
         <div>
-          <img class="order-img" onClick={() => setSwitchorder(!switchorder)} src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/53157/shopping-cart-emoji-clipart-md.png"></img>
-          {switchorder && <div class="order-box">
-            {list_order.map(order => (<Order content={order}/>))}
-            {list_order.length > 0 && <button onClick={() => submitOrder(list_order)}>สั่งเลย</button>}
-            {list_order.length === 0 && <p class="warn">ไม่มีอาหารในตระกร้า</p>}
-          </div>}
-          <img class="profile-img" onClick={() => setSwitchprofile(!switchprofile)} src="https://icon-library.com/images/customer-login-icon/customer-login-icon-8.jpg"></img>
-          {switchprofile && <div class="profile-box">
-            <p>ชื่อผู้ใช้</p> 
-            <input 
-              type="text" 
-              value={username} 
-              onChange={(event) => setUsername(event.target.value)}>
-            </input>
-            <p>เบอร์โทรศัพท์</p> 
-            <input 
-              type="tel" 
-              value={usertel} 
-              onChange={(event) => setUsertel(event.target.value)}>
-            </input>
-            <p>สถานที่จัดส่ง</p> 
-            <input 
-              type="text" 
-              value={userlocation} 
-              onChange={(event) => setUserlocation(event.target.value)}>
-            </input>
-          </div>}
+          <img
+            className="order-img"
+            onClick={() => setSwitch({ ...Switch, order: !Switch.order })}
+            src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/53157/shopping-cart-emoji-clipart-md.png"
+          ></img>
+          {Switch.order && (
+            <div className="order-box">
+              {list_order.map((order) => (
+                <Order content={order} />
+              ))}
+              {list_order.length > 0 && (
+                <button onClick={() => submitOrder()}>สั่งเลย</button>
+              )}
+              {list_order.length === 0 && (
+                <p className="warn">ไม่มีอาหารในตระกร้า</p>
+              )}
+            </div>
+          )}
+          <img
+            className="profile-img"
+            onClick={() => setSwitch({ ...Switch, profile: !Switch.profile })}
+            src="https://icon-library.com/images/customer-login-icon/customer-login-icon-8.jpg"
+          ></img>
+          {Switch.profile && (
+            <div className="profile-box">
+              <p>ชื่อผู้ใช้</p>
+              <input
+                type="text"
+                value={user.name}
+                onChange={(event) =>
+                  setUser({ ...user, name: event.target.value })
+                }
+              ></input>
+              <p>เบอร์โทรศัพท์</p>
+              <input
+                type="tel"
+                value={user.tel}
+                onChange={(event) =>
+                  setUser({ ...user, tel: event.target.value })
+                }
+              ></input>
+              <p>สถานที่จัดส่ง</p>
+              <input
+                type="text"
+                value={user.address}
+                onChange={(event) =>
+                  setUser({ ...user, address: event.target.value })
+                }
+              ></input>
+            </div>
+          )}
         </div>
       </nav>
-      <div class="content">
-        <div class="mode">
-          <p class="deposit">ฝากซื้อ</p>
-          <p class="derivery">รับฝาก</p>
-        </div> 
-        <div class="canteen">
-          <h3>ร้านอาหาร</h3>
-          <div class="scroll-c">
-            <Restaurant popupCallback={(data) => setSwitch(data)} name="ร้านอาหาร" img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"/>
-            <Restaurant popupCallback={(data) => setSwitch(data)} name="ร้านอาหาร" img="https://img.wongnai.com/p/1920x0/2018/09/21/5a6610a0832349e69db9fa40d0793c7c.jpg"/>
-            <Restaurant popupCallback={(data) => setSwitch(data)} name="ร้านอาหาร" img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"/>
-            <Restaurant popupCallback={(data) => setSwitch(data)} name="ร้านอาหาร" img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"/>
-            <Restaurant popupCallback={(data) => setSwitch(data)} name="ร้านอาหาร" img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"/>
-            <Restaurant popupCallback={(data) => setSwitch(data)} name="ร้านอาหาร" img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"/>
-        </div>
-        </div>
-        <div class="ordered">
-          <h3>รายการสั่งซื้อ</h3>
-          <div class="scroll-p">
-            {list_ordered.map(ordered => (<Ordered content={ordered}/>))}
-            {list_ordered.length === 0 && <p class="warn">ไม่มีรายการสั่งซื้อ</p>}
+
+      {Switch.mode && (
+        <div className="content">
+          <div className="mode">
+            <p
+              className="deposit-dep"
+              onClick={() => setSwitch({ ...Switch, mode: true })}
+            >
+              ฝากซื้อ
+            </p>
+            <p
+              className="derivery-dep"
+              onClick={() => setSwitch({ ...Switch, mode: false })}
+            >
+              รับฝาก
+            </p>
+          </div>
+          <div className="canteen">
+            <h3>ร้านอาหาร</h3>
+            <div className="scroll-c">
+              <Restaurant
+                popup={(data) => restaurantCallback(data)}
+                name="ร้านอาหาร"
+                img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"
+              />
+              <Restaurant
+                popup={(data) => restaurantCallback(data)}
+                name="ร้านอาหาร"
+                img="https://img.wongnai.com/p/1920x0/2018/09/21/5a6610a0832349e69db9fa40d0793c7c.jpg"
+              />
+              <Restaurant
+                popup={(data) => restaurantCallback(data)}
+                name="ร้านอาหาร"
+                img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"
+              />
+              <Restaurant
+                popup={(data) => restaurantCallback(data)}
+                name="ร้านอาหาร"
+                img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"
+              />
+              <Restaurant
+                popup={(data) => restaurantCallback(data)}
+                name="ร้านอาหาร"
+                img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"
+              />
+              <Restaurant
+                popup={(data) => restaurantCallback(data)}
+                name="ร้านอาหาร"
+                img="https://img.wongnai.com/p/1968x0/2019/02/11/c9eb14ff78184602be77d65eef6379b8.jpg"
+              />
+            </div>
+          </div>
+          <div className="ordered">
+            <h3>รายการสั่งซื้อ</h3>
+            <div className="scroll-p">
+              {list_ordered.map((ordered) => (
+                <Ordered content={ordered} />
+              ))}
+              {list_ordered.length === 0 && (
+                <p className="warn">ไม่มีรายการสั่งซื้อ</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      {switchpopup && <PopupOrder name={namerestuarant} orderCallback={(data) => addListOrder(data)} popupCallback={(data) => setSwitchpopup(data)}/>}
+      )}
+
+      {!Switch.mode && (
+        <div className="content">
+          <div className="mode">
+            <p
+              className="deposit-der"
+              onClick={() => setSwitch({ ...Switch, mode: true })}
+            >
+              ฝากซื้อ
+            </p>
+            <p
+              className="derivery-der"
+              onClick={() => setSwitch({ ...Switch, mode: false })}
+            >
+              รับฝาก
+            </p>
+          </div>
+          <div className="derivery-ordered">
+            <h3>รายการสั่งซื้อ</h3>
+            <div className="scroll-p">
+              {derivery_list_order.map((ordered) => (
+                <DeriveryOrdered
+                  content={ordered}
+                  id={(id) => idCallback(id)}
+                />
+              ))}
+              {derivery_list_order.length === 0 && (
+                <p className="warn">ไม่มีรายการสั่งซื้อ</p>
+              )}
+            </div>
+          </div>
+          <div className="derivery-ordered">
+            <h3>รายการที่ต้องส่ง</h3>
+            <div className="scroll-p">
+              {derivery_list_accept.map((ordered) => (
+                <DeriveryOrdered content={ordered} />
+              ))}
+              {derivery_list_accept.length === 0 && (
+                <p className="warn">ไม่มีรายการสั่งซื้อ</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {Switch.popup && (
+        <div className="background">
+          <div className="popup-order">
+            <h2>{order.name}</h2>
+            <from>
+              <input
+                className="name"
+                type="text"
+                value={order.food}
+                placeholder="ชื่ออาหาร"
+                onChange={(event) =>
+                  setOrder({ ...order, food: event.target.value })
+                }
+              ></input>
+              <input
+                className="price"
+                type="number"
+                value={order.price}
+                placeholder="ราคา"
+                onChange={(event) =>
+                  setOrder({ ...order, price: event.target.value })
+                }
+              ></input>
+              <input
+                className="amount"
+                type="number"
+                value={order.amount}
+                placeholder="จำนวน"
+                onChange={(event) =>
+                  setOrder({ ...order, amount: event.target.value })
+                }
+              ></input>
+              <input
+                value={order.textarea}
+                type="textarea"
+                placeholder="หมายเหตุ เช่น ไม่ใส่ผัก"
+                onChange={(event) =>
+                  setOrder({ ...order, textarea: event.target.value })
+                }
+              ></input>
+              <button onClick={() => addOrder()}>ใส่ตระกร้า</button>
+            </from>
+            <div
+              className="close"
+              onClick={() => setSwitch({ ...Switch, popup: false })}
+            >
+              &times;
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
