@@ -77,6 +77,7 @@ namespace miniprojectweb.Controllers
                 // Return a success response with the list of orders
                 Debug.Print("hey I'mhere");
                 return Ok(_orderDataList2);
+                
             }
             catch (Exception ex)
             {
@@ -141,9 +142,30 @@ namespace miniprojectweb.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] bool State)
         {
+            try
+            {
+                // Find the order with the specified ID in the list of orders
+                var order = _orderDataList2.FirstOrDefault(o => o.Id == id);
+                Debug.WriteLine("hi");
+                if (order == null)
+                {
+                    // Return a not found response if the order is not found
+                    return NotFound();
+                }
 
+                // Update the state of the order
+                order.State = State;
+
+                // Return a success response with the updated order object
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                // Return an error response with the error message
+                return BadRequest(ex.Message);
+            }
         }
 
     }
