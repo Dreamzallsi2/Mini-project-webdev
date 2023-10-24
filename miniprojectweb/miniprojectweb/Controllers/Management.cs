@@ -12,10 +12,10 @@ namespace miniprojectweb.Controllers
     [ApiController]
     public class Management : ControllerBase
     {
-
+        private static int _nextId = 2;
         private List<OrderData> _orderDataList = new List<OrderData>();
         private static List<OrderData> _orderDataList2 = new List<OrderData>
-{
+{       
     new OrderData
     {
         Id = 1,
@@ -41,7 +41,7 @@ namespace miniprojectweb.Controllers
                 Food = "dream",
                 Price = 12345,
                 Amount = 22,
-                Textarea = "awdawd"
+                Textarea = "No vegetable"
             }
         },
         Total = 272096,
@@ -91,7 +91,7 @@ namespace miniprojectweb.Controllers
             try
             {
                 // Find the order with the specified ID in the list of orders
-                var order = _orderDataList.FirstOrDefault(o => o.Id == id);
+                var order = _orderDataList2.FirstOrDefault(o => o.Id == id);
 
                 if (order == null)
                 {
@@ -119,7 +119,7 @@ namespace miniprojectweb.Controllers
                 // Create a new order object with the parsed data
                 var order = new OrderData
                 {
-                    Id = data.Id,
+                    Id = _nextId++,
                     User = data.User,
                     list_ordered = data.list_ordered,
                     Total = data.Total,
@@ -143,12 +143,8 @@ namespace miniprojectweb.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+
         }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Hunger\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj": {}
+    "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj": {}
   },
   "projects": {
-    "E:\\Hunger\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj": {
+    "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Hunger\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj",
+        "projectUniqueName": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj",
         "projectName": "miniprojectweb",
-        "projectPath": "E:\\Hunger\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj",
+        "projectPath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "E:\\Hunger\\miniprojectweb\\miniprojectweb\\obj\\",
+        "outputPath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\miniprojectweb\\miniprojectweb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
