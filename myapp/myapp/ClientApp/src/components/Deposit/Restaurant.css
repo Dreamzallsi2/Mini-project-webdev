@@ -1,0 +1,37 @@
+.restaurant {
+  width: 150px;
+  margin: 0px 10px 10px;
+  background-color: white;
+  border: 1.5px solid rgb(179, 179, 240);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.restaurant p {
+  margin: 0px 40px 5px;
+}
+
+.restaurant .state {
+  width: 100%;
+  margin: 0px 37px 10px;
+  font-size: 12px;
+}
+
+.restaurant span {
+  color: rgb(1, 196, 24);
+}
+
+.restaurant img {
+  width: 150px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.restaurant:active {
+  border: 1.5px solid rgb(40, 40, 119);
+}
+
+.restaurant:hover {
+  background-color: rgb(240, 244, 255);
+}

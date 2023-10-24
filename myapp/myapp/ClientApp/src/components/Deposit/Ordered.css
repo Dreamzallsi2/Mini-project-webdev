@@ -1,0 +1,87 @@
+.ordered .detail {
+    display: flex;
+    height: 60px;
+    color: black;
+    border-radius: 10px;
+}
+
+.ordered .detail .name {
+    align-self: center;
+    width: 120px;
+    margin: -10px 10px 0px 0px;
+    padding: 10px 0px 10px;
+    color: rgb(92, 92, 138);
+    text-align: center;
+    border: 4px solid rgb(141, 141, 179);
+    border-radius: 10px;
+}
+
+.ordered .detail>div {
+    align-self: center;
+    width: 470px;
+    height: 50px;
+    margin: 3px 0px 0px;
+    font-size: 14px;
+    overflow-y: scroll;
+}
+
+.ordered .detail>div>div {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin: 0px 0px 5px;
+    background-color: rgb(254, 247, 255);
+    border: 1.5px solid rgb(160, 74, 170);
+    border-radius: 7px;
+}
+
+.ordered .detail>div>div>p,
+.ordered .title p {
+    text-align: center;
+    width: 90px;
+}
+
+.ordered .title {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 470px;
+    height: 10px;
+    left: 140px;
+    font-size: 10px;
+}
+
+.ordered .detail .total,
+.state-on, .state-off {
+    text-align: center;
+    width: 60px;
+    height: 30px;
+    margin: 0px 0px 10px 10px;
+    padding: 10px 0px 0px;
+    color: rgb(28, 43, 177);
+    border: 3px solid rgb(28, 43, 177);
+    border-radius: 10px;
+}
+
+.ordered .detail .state-off {
+    padding: 5px 0px 5px;
+    color: rgb(223, 160, 1);
+    background-color: rgb(250, 242, 198);
+    border: 3px solid rgb(223, 160, 1);
+}
+
+.ordered .detail .state-on {
+    padding: 5px 0px 5px;
+    color: rgb(37, 153, 48);
+    background-color: rgb(216, 248, 216);
+    border: 3px solid rgb(57, 138, 65);
+}
+
+.ordered .scroll-p {
+    height: 260px;
+    margin: 20px 10px 0px;
+    background-color: rgb(240, 244, 255);
+    border: 1.5px solid rgb(179, 179, 240);
+    border-radius: 15px;
+    overflow-y: scroll;
+}
