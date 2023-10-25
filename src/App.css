@@ -1,0 +1,316 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans Thai", sans-serif;
+  background-color: rgb(235, 235, 235);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0px 50px 0px;
+  color: white;
+  background-color: rgb(40, 40, 119);
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo img {
+  position: relative;
+  top: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+.order-img {
+  position: absolute;
+  top: 10px;
+  right: 150px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.order-box {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  width: 570px;
+  height: 250px;
+  padding: 10px;
+  z-index: 1;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+  overflow: scroll;
+}
+
+.order-box button {
+  position: relative;
+  left: 50%;
+  width: 150px;
+  height: 50px;
+  margin: 0px 0px 0px -85px;
+  font-size: 18px;
+  color: white;
+  background-color: rgb(40, 40, 119);
+  border-radius: 15px;
+}
+
+.order-box button:hover {
+  background-color: rgb(77, 77, 133);
+}
+
+.warn {
+  position: relative;
+  top: 35%;
+  text-align: center;
+  color: black;
+}
+
+.content {
+  position: relative;
+  left: 50%;
+  width: 840px;
+  height: 800px;
+  margin: 40px 0px 0px -420px;
+  padding: 0px 0px 25px;
+  background-color: white;
+  border-radius: 23px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+}
+
+.mode {
+  display: flex;
+  height: 50px;
+  padding: 0px 10px 0px;
+  background-color: rgb(40, 40, 119);
+  border-radius: 20px 20px 0px 0px;
+}
+
+.mode p {
+  width: 80px;
+  height: 29px;
+  padding: 5px 0px 0px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.mode .deposit-dep {
+  color: rgb(40, 40, 119);
+  background-color: white;
+}
+
+.mode .derivery-dep {
+  color: white;
+  background-color: rgb(40, 40, 119);
+}
+
+.mode .deposit-der {
+  color: white;
+  background-color: rgb(40, 40, 119);
+}
+
+.mode .derivery-der {
+  color: rgb(40, 40, 119);
+  background-color: white;
+}
+
+.mode .derivery:hover {
+  background-color: rgb(139, 139, 215);
+}
+
+.canteen,
+.ordered {
+  padding: 15px 15px 0px;
+}
+
+.canteen h3,
+.ordered h3 {
+  margin: 0px 10px 10px;
+}
+
+.scroll-c {
+  display: flex;
+  justify-content: flex-start;
+  height: 160px;
+  margin: 20px 10px 0px;
+  overflow: scroll;
+  scrollbar-width: thin;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-order {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  padding: 20px;
+  margin: -200px -265px 0px;
+  width: 500px;
+  height: 400px;
+  z-index: 1;
+  overflow: auto;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.popup-order h2 {
+  align-self: center;
+}
+
+.popup-order input {
+  margin: 5px 5px 15px;
+  padding: 5px 0px 5px 10px;
+  border: 1.5px solid rgb(77, 77, 133);
+  border-radius: 10px;
+  transition: 0.5s;
+  outline: none;
+}
+
+.popup-order input:focus {
+  background-color: rgb(240, 244, 255);
+}
+
+.popup-order .name {
+  width: 280px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.popup-order .price {
+  width: 80px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.popup-order .amount {
+  width: 70px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.popup-order input[type="textarea"] {
+  width: 475px;
+  height: 140px;
+  font-size: 16px;
+  border: 1.5px solid rgb(77, 77, 133);
+}
+
+.popup-order button {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: 170px;
+  height: 60px;
+  margin: 0px 0px 0px -85px;
+  font-size: 18px;
+  color: white;
+  background-color: rgb(40, 40, 119);
+  border-radius: 20px;
+}
+
+.popup-order button:hover {
+  background-color: rgb(77, 77, 133);
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-img {
+  position: absolute;
+  top: 15px;
+  right: 70px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.profile-box {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  width: 230px;
+  height: 230px;
+  padding: 0px 20px 0px;
+  z-index: 1;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+  overflow: scroll;
+}
+
+.profile-box p {
+  font-size: 12px;
+  margin: 5px 0px 3px;
+  color: black;
+}
+
+.profile-box input {
+  width: 210px;
+  height: 40px;
+  padding: 0px 10px 0px;
+  font-size: 20px;
+  border: 1.5px solid rgb(40, 40, 119);
+  border-radius: 10px;
+  outline: none;
+}
+
+.profile-box input:focus {
+  background-color: rgb(240, 244, 255);
+}
+
+.derivery-ordered h3 {
+  margin: 15px 25px 0px;
+}
+
+.ordered .scroll-p {
+  display: flex;
+  flex-direction: column;
+  height: 470px;
+  margin: 20px 10px 20px;
+  overflow: scroll;
+  scrollbar-width: thin;
+  background-color: rgb(213, 230, 246);
+  border: 1.5px solid rgb(130, 130, 219);
+  border-radius: 15px;
+}
+
+.derivery-ordered .scroll-p {
+  height: 680px;
+  margin: 20px 30px 0px;
+  background-color: rgb(240, 244, 255);
+  border: 1.5px solid rgb(179, 179, 240);
+  border-radius: 15px;
+  overflow-y: scroll;
+}
