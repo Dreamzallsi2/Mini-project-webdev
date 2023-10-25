@@ -8,12 +8,13 @@ using System.Net;
 
 namespace miniprojectweb.Controllers
 {
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class Management : ControllerBase
     {
         private static int _nextId = 2;
-        private List<OrderData> _orderDataList = new List<OrderData>();
         private static List<OrderData> _orderDataList2 = new List<OrderData>
 {       
     new OrderData
@@ -48,40 +49,34 @@ namespace miniprojectweb.Controllers
         State = false
     }
 };
-        
-        /*
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+
+        public class SortData
         {
-            // Replace this with code to fetch your OrderData object based on the provided 'id'
-            OrderData orderData = GetOrderDataById(id);
-
-            if (orderData == null)
+            public List<OrderData> Sort()
             {
-                return NotFound(); // Return a 404 Not Found if the data is not found
+                var falseStateOrders = _orderDataList2.Where(o => o.State == false).ToList();
+                var trueStateOrders = _orderDataList2.Where(o => o.State == true).ToList();
+
+                var sortedOrders = falseStateOrders.Concat(trueStateOrders).ToList();
+                return sortedOrders;
             }
-
-            return Ok(orderData); // Return the OrderData object as JSON
         }
-
-        // Your other controller methods here */
-
-        // Example method to fetch OrderData by ID (replace with your actual data retrieval logic)
 
         [HttpGet]
         public IActionResult GetAllOrderData()
         {
             try
             {
-                // Return a success response with the list of orders
+                var sortData = new SortData();
+                var sortedOrders = sortData.Sort();
+
                 Debug.Print("hey I'mhere");
-                return Ok(_orderDataList2);
+                return Ok(sortedOrders);
                 
             }
             catch (Exception ex)
             {
-                // Return an error response with the error message
+
                 return BadRequest(ex.Message);
             }
         }
@@ -91,21 +86,21 @@ namespace miniprojectweb.Controllers
         {
             try
             {
-                // Find the order with the specified ID in the list of orders
+
                 var order = _orderDataList2.FirstOrDefault(o => o.Id == id);
 
                 if (order == null)
                 {
-                    // Return a not found response if the order is not found
+
                     return NotFound();
                 }
 
-                // Return a success response with the order object
+
                 return Ok(order);
             }
             catch (Exception ex)
             {
-                // Return an error response with the error message
+
                 return BadRequest(ex.Message);
             }
         }
@@ -117,7 +112,7 @@ namespace miniprojectweb.Controllers
         {
             try
             {
-                // Create a new order object with the parsed data
+
                 var order = new OrderData
                 {
                     Id = _nextId++,
@@ -127,15 +122,15 @@ namespace miniprojectweb.Controllers
                     State = data.State
                 };
 
-                // Add the order to the list of orders
+
                 _orderDataList2.Add(order);
 
-                // Return a success response with the new order object
+
                 return Ok(order);
             }
             catch (Exception ex)
             {
-                // Return an error response with the error message
+
                 return BadRequest(ex.Message);
             }
         }
@@ -146,24 +141,24 @@ namespace miniprojectweb.Controllers
         {
             try
             {
-                // Find the order with the specified ID in the list of orders
+
                 var order = _orderDataList2.FirstOrDefault(o => o.Id == id);
                 Debug.WriteLine("hi");
                 if (order == null)
                 {
-                    // Return a not found response if the order is not found
+
                     return NotFound();
                 }
 
-                // Update the state of the order
+
                 order.State = true;
 
-                // Return a success response with the updated order object
+
                 return Ok(order);
             }
             catch (Exception ex)
             {
-                // Return an error response with the error message
+
                 return BadRequest(ex.Message);
             }
         }

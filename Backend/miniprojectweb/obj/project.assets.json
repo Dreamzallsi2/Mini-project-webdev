@@ -3082,11 +3082,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Users\\User\\Desktop\\File in university\\Test\\Backend\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj",
+      "projectUniqueName": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\Backend\\miniprojectweb\\miniprojectweb.csproj",
       "projectName": "miniprojectweb",
-      "projectPath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Backend\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj",
+      "projectPath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\Backend\\miniprojectweb\\miniprojectweb.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Backend\\miniprojectweb\\miniprojectweb\\obj\\",
+      "outputPath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\Backend\\miniprojectweb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

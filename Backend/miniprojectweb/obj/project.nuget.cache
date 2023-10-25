@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ndAjq9UZ9ePOYGDxTP4kJioNYo2y4EQoWYnmZlWTjBHyOWjKwcBhaLfT7LjBfQu0PxpByR0LE6JyaYqItD29CA==",
+  "dgSpecHash": "D8jpI2x0eBd9FuvTul884ania+oDMjJe6lzB6qtZAF56GVO0J/NugK+6p7jPeb3qbjoUB3PsqnEgtEZDbkayMw==",
   "success": true,
-  "projectFilePath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Backend\\miniprojectweb\\miniprojectweb\\miniprojectweb.csproj",
+  "projectFilePath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\Backend\\miniprojectweb\\miniprojectweb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
