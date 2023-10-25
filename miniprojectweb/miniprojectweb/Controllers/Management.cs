@@ -142,7 +142,7 @@ namespace miniprojectweb.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] bool State)
+        public IActionResult Put(int id)
         {
             try
             {
@@ -156,7 +156,7 @@ namespace miniprojectweb.Controllers
                 }
 
                 // Update the state of the order
-                order.State = State;
+                order.State = true;
 
                 // Return a success response with the updated order object
                 return Ok(order);
