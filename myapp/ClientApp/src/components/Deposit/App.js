@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Restaurant from "./Restaurant";
 import Order from "./Order";
 import Ordered from "./Ordered";
@@ -37,23 +37,8 @@ function App() {
   };
 
   const idCallback = (id) => {
-    const add_id = list_order.map((obj) => {
-      if (obj.id === id) {
-        return { ...obj, state: true };
-      }
-      return obj;
-    });
-    setListOrdered(add_id);
-    list_ordered.map((obj) => {
-      if (obj.id === id) {
-        setDeriveryListAccept([obj, ...derivery_list_accept]);
-      }
-    });
-    setDeriveryListOrder((current) =>
-      current.filter((order) => {
-        return order.id !== id;
-      })
-    );
+    console.log(id);
+    putData({ id: id});
   };
 
   const addOrder = () => {
@@ -98,35 +83,12 @@ const submitOrder = async () => {
 
     setSwitch({ ...Switch, order: false });
 
-    await getOrderedonfunc();
+    await getOrdered();
     setListOrder([]);
   } catch (error) {
     console.error("Error:", error);
   }
 };
-
-const getOrderedonfunc = async () => {
-  try {
-    const response = await fetch("https://localhost:7031/api/Management", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-
-    const responseData = await response.json();
-    console.log("GET_Response:", responseData);
-    setListOrdered(responseData.reverse());
-    setDeriveryListOrder(responseData.reverse());
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
-
 
   function getOrdered() {
     fetch("https://localhost:7031/api/Management", {
@@ -142,15 +104,51 @@ const getOrderedonfunc = async () => {
         return response.json();
       })
       .then((responseData) => {
-        console.log("GET_Response:", responseData);
+        console.log("GET_Response:", responseData.reverse());
         setListOrdered(responseData.reverse());
-        setDeriveryListOrder(responseData.reverse());
+        const data = responseData.reverse();
+        setDeriveryListOrder([]); setDeriveryListAccept([]);
+        data.map((order) => {if (order.state === false) {setDeriveryListOrder([order, ...derivery_list_order]);}});
+        data.map((order) => {if (order.state === true) {setDeriveryListAccept([order, ...derivery_list_accept]);}});
       })
       .catch((error) => {
         console.error("Error:", error);
       });
     setListOrder([]);
   };
+
+  useEffect(() => {
+    console.log("list_ordered",list_ordered);
+  }, [list_ordered]);
+
+  useEffect(() => {
+    console.log("derivery_list_order",derivery_list_order);
+    console.log("derivery_list_accept",derivery_list_accept);
+  }, [derivery_list_accept , derivery_list_order]);
+  
+  async function putData(dataToPut) {
+    console.log("dataToPut", dataToPut);
+  
+    try {
+      const response = await fetch(`https://localhost:7031/api/Management/${dataToPut.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToPut),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+  
+      const responseData = await response.json();
+      console.log("PUT_Response:", responseData);
+      await getOrdered();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
 
   if (pagerefresh) {
     getOrdered();
