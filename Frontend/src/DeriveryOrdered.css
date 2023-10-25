@@ -1,0 +1,170 @@
+.derivery-list-ordered {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 97%;
+  margin: 10px;
+  background-color: rgb(252, 248, 223);
+  border: 1.5px solid rgb(206, 167, 28);
+  border-radius: 15px;
+}
+
+.derivery-list-ordered .title {
+  display: flex;
+}
+
+.derivery-list-ordered .head {
+  background-color: rgb(238, 208, 99);
+  border: 1.5px solid rgb(238, 208, 99);
+  border-radius: 15px 15px 0px 0px;
+}
+
+.derivery-list-ordered .head p {
+  width: 95%;
+  height: 20px;
+  margin: 10px;
+  color: black;
+  overflow: hidden;
+}
+
+.derivery-list-ordered .data-order p {
+  width: 130px;
+  height: 20px;
+  margin: 5px 0px 5px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.derivery-list-ordered .data-order .text-des,
+.derivery-list-ordered .data-order .title-des {
+  width: 200px;
+  height: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.derivery-list-ordered .data-order {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px 50px;
+}
+
+.derivery-list-ordered .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  color: black;
+  background-color: rgb(238, 208, 99);
+  border: 1.5px solid rgb(238, 208, 99);
+  border-radius: 0px 0px 15px 15px;
+}
+
+.derivery-list-ordered .footer h3 {
+  position: relative;
+  top: 5px;
+  left: 0;
+  width: 200px;
+  margin: 5px 0px 5px;
+}
+
+.derivery-list-ordered .detail > div {
+  display: flex;
+  background-color: rgb(248, 233, 186);
+  border-radius: 10px;
+}
+
+.derivery-list-ordered .footer h3 {
+  position: relative;
+  top: -5px;
+  left: 0;
+}
+
+.derivery-list-ordered .footer button {
+  width: 100px;
+  color: white;
+  background-color: #191f78;
+  border: 2px solid #191f78;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.derivery-complete-list-ordered {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 97%;
+  margin: 10px;
+  background-color: rgb(234, 255, 220);
+  border: 1.5px solid rgb(29, 167, 52);
+  border-radius: 15px;
+}
+
+.derivery-complete-list-ordered .title {
+  display: flex;
+}
+
+.derivery-complete-list-ordered .head {
+  background-color: rgb(29, 167, 52);
+  border: 1.5px solid rgb(29, 167, 52);
+  border-radius: 15px 15px 0px 0px;
+}
+
+.derivery-complete-list-ordered .head p {
+  width: 95%;
+  height: 20px;
+  margin: 10px;
+  color: white;
+  overflow: hidden;
+}
+
+.derivery-complete-list-ordered .data-order p {
+  width: 130px;
+  height: 20px;
+  margin: 5px 0px 5px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.derivery-complete-list-ordered .data-order .text-des,
+.derivery-complete-list-ordered .data-order .title-des {
+  width: 200px;
+  height: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.derivery-complete-list-ordered .data-order {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px 50px;
+}
+
+.derivery-complete-list-ordered .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  color: white;
+  background-color: rgb(29, 167, 52);
+  border: 1.5px solid rgb(29, 167, 52);
+  border-radius: 0px 0px 15px 15px;
+}
+.derivery-complete-list-ordered .detail > div {
+  display: flex;
+  background-color: rgb(170, 234, 130);
+  border-radius: 10px;
+}
+
+.derivery-complete-list-ordered .footer h3 {
+  position: relative;
+  top: 5px;
+  left: 0;
+  margin: 5px 0px 5px;
+}
