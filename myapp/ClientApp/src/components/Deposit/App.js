@@ -27,7 +27,6 @@ function App() {
 
   const [list_order, setListOrder] = useState([]);
   const [list_ordered, setListOrdered] = useState([]);
-
   const [derivery_list_order, setDeriveryListOrder] = useState([]);
   const [derivery_list_accept, setDeriveryListAccept] = useState([]);
 
@@ -38,7 +37,7 @@ function App() {
 
   const idCallback = (id) => {
     console.log(id);
-    putData({ id: id});
+    putData({ id: id });
   };
 
   const addOrder = () => {
@@ -47,48 +46,48 @@ function App() {
     setSwitch({ ...Switch, popup: false });
   };
 
-const submitOrder = async () => {
-  let sum = 0;
-  list_order.forEach((order) => {
-    sum += order.price * order.amount;
-  });
-  let ordered = {
-    id: 0,
-    user: user,
-    list_ordered: list_order,
-    total: sum,
-    state: false,
-  };
-
-  try {
-    const response = await fetch("https://localhost:7031/api/Management", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(ordered),
+  const submitOrder = async () => {
+    let sum = 0;
+    list_order.forEach((order) => {
+      sum += order.price * order.amount;
     });
+    let ordered = {
+      id: 0,
+      user: user,
+      list_ordered: list_order,
+      total: sum,
+      state: false,
+    };
 
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
+    try {
+      const response = await fetch("https://localhost:7031/api/Management", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(ordered),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const responseData = await response.json();
+      console.log("POST_Response:", responseData);
+
+      const successMessage = responseData.message;
+      if (successMessage) {
+        alert(successMessage);
+      }
+
+      setSwitch({ ...Switch, order: false });
+
+      await getOrdered();
+      setListOrder([]);
+    } catch (error) {
+      console.error("Error:", error);
     }
-
-    const responseData = await response.json();
-    console.log("POST_Response:", responseData);
-
-    const successMessage = responseData.message;
-    if (successMessage) {
-      alert(successMessage);
-    }
-
-    setSwitch({ ...Switch, order: false });
-
-    await getOrdered();
-    setListOrder([]);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
+  };
 
   function getOrdered() {
     fetch("https://localhost:7031/api/Management", {
@@ -108,8 +107,8 @@ const submitOrder = async () => {
         setListOrdered(responseData.reverse());
         const data = responseData.reverse();
         setDeriveryListOrder([]); setDeriveryListAccept([]);
-        data.map((order) => {if (order.state === false) {setDeriveryListOrder([order, ...derivery_list_order]);}});
-        data.map((order) => {if (order.state === true) {setDeriveryListAccept([order, ...derivery_list_accept]);}});
+        data.map((order) => { if (order.state === false) { setDeriveryListOrder((derivery_list_order) => [...derivery_list_order, order]); } });
+        data.map((order) => { if (order.state === true) { setDeriveryListAccept((derivery_list_accept) => [...derivery_list_accept, order]); } });
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -118,17 +117,20 @@ const submitOrder = async () => {
   };
 
   useEffect(() => {
-    console.log("list_ordered",list_ordered);
+    console.log("list_ordered", list_ordered);
   }, [list_ordered]);
 
   useEffect(() => {
-    console.log("derivery_list_order",derivery_list_order);
-    console.log("derivery_list_accept",derivery_list_accept);
-  }, [derivery_list_accept , derivery_list_order]);
-  
+    console.log("derivery_list_order", derivery_list_order);
+  }, [derivery_list_order]);
+
+  useEffect(() => {
+    console.log("derivery_list_accept", derivery_list_accept);
+  }, [derivery_list_accept]);
+
   async function putData(dataToPut) {
     console.log("dataToPut", dataToPut);
-  
+
     try {
       const response = await fetch(`https://localhost:7031/api/Management/${dataToPut.id}`, {
         method: "PUT",
@@ -137,11 +139,11 @@ const submitOrder = async () => {
         },
         body: JSON.stringify(dataToPut),
       });
-  
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-  
+
       const responseData = await response.json();
       console.log("PUT_Response:", responseData);
       await getOrdered();
@@ -319,7 +321,9 @@ const submitOrder = async () => {
             <div className="scroll-p">
               {
                 derivery_list_accept.map((ordered) => (
-                  <DeriveryOrdered content={ordered} />
+                  <DeriveryOrdered
+                    content={ordered}
+                  />
                 ))}
               {derivery_list_accept.length === 0 && (
                 <p className="warn">ไม่มีรายการสั่งซื้อ</p>
