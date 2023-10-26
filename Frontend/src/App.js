@@ -5,8 +5,6 @@ import Order from "./Order";
 import Ordered from "./Ordered";
 import DeriveryOrdered from "./DeriveryOrdered";
 
-let pagerefresh = true;
-
 function App() {
   const [user, setUser] = useState({ name: "", tel: "", address: "" });
   const [order, setOrder] = useState({
@@ -26,8 +24,6 @@ function App() {
 
   const [list_order, setListOrder] = useState([]);
   const [list_ordered, setListOrdered] = useState([]);
-  const [derivery_list_order, setDeriveryListOrder] = useState([]);
-  const [derivery_list_accept, setDeriveryListAccept] = useState([]);
 
   const restaurantCallback = (data) => {
     setSwitch({ ...Switch, popup: !Switch.popup });
@@ -103,45 +99,18 @@ function App() {
       })
       .then((responseData) => {
         console.log("GET_Response:", responseData.reverse());
-        setListOrdered(responseData.reverse());
-        const data = responseData.reverse();
-        setDeriveryListOrder([]);
-        setDeriveryListAccept([]);
-        data.map((order) => {
-          if (order.state === false) {
-            setDeriveryListOrder((derivery_list_order) => [
-              ...derivery_list_order,
-              order,
-            ]);
-          }
-        });
-        data.map((order) => {
-          if (order.state === true) {
-            setDeriveryListAccept((derivery_list_accept) => [
-              ...derivery_list_accept,
-              order,
-            ]);
-          }
-        });
-        console.log("list_ordered", list_ordered);
+        const compareFunction = (a, b) => {
+          return a.state - b.state;
+        };
+        const sortedData = responseData.sort(compareFunction);
+        console.log("GET_Response (sorted):", sortedData);
+        setListOrdered(sortedData);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
     setListOrder([]);
   }
-
-  useEffect(() => {
-    console.log("list_ordered", list_ordered);
-  }, [list_ordered]);
-
-  useEffect(() => {
-    console.log("derivery_list_order", derivery_list_order);
-  }, [derivery_list_order]);
-
-  useEffect(() => {
-    console.log("derivery_list_accept", derivery_list_accept);
-  }, [derivery_list_accept]);
 
   async function putData(dataToPut) {
     console.log("dataToPut", dataToPut);
@@ -173,6 +142,10 @@ function App() {
   useEffect(() => {
     getOrdered();
   }, []);
+
+  useEffect(() => {
+    console.log("UF ---- list_ordered", list_ordered);
+  }, [list_ordered]);
 
   return (
     <div>
