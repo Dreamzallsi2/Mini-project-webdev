@@ -69,7 +69,7 @@ class DeriveryOrdered extends Component {
             </div>
             <div className="footer">
               <h3 className="total">รวม {this.props.content.total} บาท</h3>
-              <h3>( เสร็จแล้ว )</h3>
+              <h3>( รับแล้ว )</h3>
             </div>
           </div>
         )}

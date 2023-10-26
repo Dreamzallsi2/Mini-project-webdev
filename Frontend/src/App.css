@@ -313,7 +313,7 @@ nav {
 .ordered .scroll-p {
   display: flex;
   flex-direction: column;
-  height: 470px;
+  height: 440px;
   margin: 20px 10px 20px;
   overflow-y: scroll;
   scrollbar-width: thin;
