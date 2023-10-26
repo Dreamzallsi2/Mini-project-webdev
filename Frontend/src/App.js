@@ -10,16 +10,18 @@ function App() {
   const [order, setOrder] = useState({
     name: "",
     food: "",
-    price: 0,
-    amount: 0,
+    price: "",
+    amount: "",
     textarea: "",
   });
 
   const [Switch, setSwitch] = useState({
+    login: false,
     mode: true,
     popup: false,
     order: false,
     profile: false,
+    disable: true,
   });
 
   const [list_order, setListOrder] = useState([]);
@@ -36,9 +38,18 @@ function App() {
   };
 
   const addOrder = () => {
-    setListOrder([order, ...list_order]);
-    setOrder({});
-    setSwitch({ ...Switch, popup: false });
+    if (order.food === "" || order.price === "" || order.amount === "" || order.textarea === "" || order.price < 0 || order.amount < 0) {
+      alert("กรุณากรอกข้อมูลให้ครบ");
+    }
+    else{
+      setListOrder([order, ...list_order]);
+      setOrder({});
+      setSwitch({ ...Switch, popup: false });
+    }
+  };
+
+  const clearOrder = () => {
+    setListOrder([]);
   };
 
   const submitOrder = async () => {
@@ -147,6 +158,25 @@ function App() {
     console.log("UF ---- list_ordered", list_ordered);
   }, [list_ordered]);
 
+  function setDatauser(mode) {
+    if (user.name === "" || user.tel === "" || user.address === "") {
+      alert("กรุณากรอกข้อมูลให้ครบ");
+    } else {
+      if (!isNaN(user.tel) && user.tel.length === 10) {
+        if ('login' === mode) {
+          setSwitch({ ...Switch, login: true });
+        }
+        if ('profile' === mode) {
+          setSwitch({ ...Switch, disable: true });
+          setSwitch({ ...Switch, profile: false });
+        }
+      }
+      else{
+        alert("กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง");
+      }
+    }
+  }
+
   return (
     <div>
       <nav>
@@ -166,7 +196,10 @@ function App() {
                 <Order content={order} />
               ))}
               {list_order.length > 0 && (
-                <button onClick={() => submitOrder()}>สั่งเลย</button>
+                <button className="submit" onClick={() => submitOrder()}>สั่งเลย</button>
+              )}
+              {list_order.length > 0 && (
+                <button className="clear" onClick={() => clearOrder()}>ลบเลย</button>
               )}
               {list_order.length === 0 && (
                 <p className="warn">ไม่มีอาหารในตระกร้า</p>
@@ -184,26 +217,35 @@ function App() {
               <input
                 type="text"
                 value={user.name}
+                maxLength="50"
+                disabled={Switch.disable}
                 onChange={(event) =>
                   setUser({ ...user, name: event.target.value })
                 }
               ></input>
               <p>เบอร์โทรศัพท์</p>
               <input
-                type="tel"
+                type="text"
                 value={user.tel}
-                onChange={(event) =>
-                  setUser({ ...user, tel: event.target.value })
-                }
-              ></input>
+                maxLength="10"
+                pattern="[0-9]*"
+                disabled={Switch.disable}
+                onChange={(event) => setUser({ ...user, tel: event.target.value })}
+                placeholder="เบอร์โทรศัพท์"
+              >
+              </input>
               <p>สถานที่จัดส่ง</p>
               <input
                 type="text"
                 value={user.address}
+                maxLength="100"
+                disabled={Switch.disable}
                 onChange={(event) =>
                   setUser({ ...user, address: event.target.value })
                 }
               ></input>
+              <button onClick={() => setSwitch({...Switch, disable : false})}>แก้ไข</button>
+              {!Switch.disable && <button onClick={() => setDatauser('profile')}>ยืนยัน</button>}
             </div>
           )}
         </div>
@@ -326,23 +368,29 @@ function App() {
                 type="number"
                 value={order.price}
                 placeholder="ราคา"
-                onChange={(event) =>
-                  setOrder({ ...order, price: event.target.value })
-                }
+                onChange={(event) => {
+                  const inputValue = event.target.value;
+                  if (inputValue.length <= 4) {
+                    setOrder({ ...order, price: inputValue });
+                  }
+                }}
               ></input>
               <input
                 className="amount"
                 type="number"
                 value={order.amount}
                 placeholder="จำนวน"
-                onChange={(event) =>
-                  setOrder({ ...order, amount: event.target.value })
-                }
+                onChange={(event) => {
+                  const inputValue = event.target.value;
+                  if (inputValue.length <= 2) {
+                    setOrder({ ...order, amount: inputValue });
+                  }
+                }}
               ></input>
               <input
                 value={order.textarea}
                 type="textarea"
-                placeholder="หมายเหตุ เช่น ไม่ใส่ผัก"
+                placeholder="หมายเหตุ เช่น ไม่ใส่ผัก (ไม่มีให้ใส่ว่าไม่มี))"
                 onChange={(event) =>
                   setOrder({ ...order, textarea: event.target.value })
                 }
@@ -358,6 +406,34 @@ function App() {
           </div>
         </div>
       )}
+      {!Switch.login && <div className="background-login">
+        <div className="popup-login">
+          <div className="logo">
+            <img src="https://www.gstatic.com/android/keyboard/emojikitchen/20230418/u1faa4/u1faa4_u1f35a.png"></img>
+            <h1>Bitfood</h1>
+          </div>
+          <input value={user.name}
+            type="text" 
+            placeholder="ชื่อผู้ใช้" 
+            maxLength="50"
+            onChange={(event) => setUser({ ...user, name: event.target.value })}
+            ></input>
+          <input value={user.tel}
+            type="text" 
+            placeholder="เบอร์โทรศัพท์" 
+            maxLength="10" 
+            pattern="[0-9]*"
+            onChange={(event) => setUser({ ...user, tel: event.target.value })}
+          ></input>
+          <input value={user.address}
+            type="text" 
+            placeholder="สถานที่จัดส่ง" 
+            maxLength="100"
+            onChange={(event) => setUser({ ...user, address: event.target.value })}
+            ></input>
+          <button onClick={() => setDatauser('login')}>ยืนยัน</button>
+        </div>
+      </div>}
     </div>
   );
 }

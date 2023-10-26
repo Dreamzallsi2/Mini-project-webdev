@@ -3076,24 +3076,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\ongno\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\Backend\\miniprojectweb\\miniprojectweb.csproj",
+      "projectUniqueName": "C:\\Users\\ongno\\Documents\\Project_WebApplication\\Mini-project-webdev\\Backend\\miniprojectweb\\miniprojectweb.csproj",
       "projectName": "miniprojectweb",
-      "projectPath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\Backend\\miniprojectweb\\miniprojectweb.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "E:\\Users\\User\\Desktop\\File in university\\Test\\Mini-project-webdev\\Backend\\miniprojectweb\\obj\\",
+      "projectPath": "C:\\Users\\ongno\\Documents\\Project_WebApplication\\Mini-project-webdev\\Backend\\miniprojectweb\\miniprojectweb.csproj",
+      "packagesPath": "C:\\Users\\ongno\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ongno\\Documents\\Project_WebApplication\\Mini-project-webdev\\Backend\\miniprojectweb\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\ongno\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3155,7 +3150,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
