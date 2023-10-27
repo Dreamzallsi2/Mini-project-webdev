@@ -38,10 +38,11 @@ function App() {
   };
 
   const addOrder = () => {
-    if (order.food === "" || order.price === "" || order.amount === "" || order.textarea === "" || order.price < 0 || order.amount < 0) {
+    if (order.food === "" || order.price === "" || order.amount === "" || order.textarea === "") {
       alert("กรุณากรอกข้อมูลให้ครบ");
-    }
-    else{
+    } else if (order.food === "" || order.price === "" || order.amount <= 0 || order.textarea <= 0) {
+      alert("กรุณากรอกข้อมูลให้ถูกต้อง");
+    } else{
       setListOrder([order, ...list_order]);
       setOrder({});
       setSwitch({ ...Switch, popup: false });
@@ -244,8 +245,8 @@ function App() {
                   setUser({ ...user, address: event.target.value })
                 }
               ></input>
-              <button onClick={() => setSwitch({...Switch, disable : false})}>แก้ไข</button>
-              {!Switch.disable && <button onClick={() => setDatauser('profile')}>ยืนยัน</button>}
+              {Switch.disable && <button onClick={() => setSwitch({...Switch, disable : false})}>แก้ไข</button>}
+              {!Switch.disable && <button onClick={() => { setDatauser('profile'); setSwitch({ ...Switch, disable: true }); }}>ยืนยัน</button>}
             </div>
           )}
         </div>
@@ -390,7 +391,7 @@ function App() {
               <input
                 value={order.textarea}
                 type="textarea"
-                placeholder="หมายเหตุ เช่น ไม่ใส่ผัก (ไม่มีให้ใส่ว่าไม่มี))"
+                placeholder="หมายเหตุ เช่น ไม่ใส่ผัก (ไม่มีให้ใส่ว่า ไม่มี)"
                 onChange={(event) =>
                   setOrder({ ...order, textarea: event.target.value })
                 }
