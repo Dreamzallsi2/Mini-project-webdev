@@ -38,9 +38,9 @@ function App() {
   };
 
   const addOrder = () => {
-    if (order.food === "" || order.price === "" || order.amount === "" || order.textarea === "") {
+    if (!order.food || !order.price || !order.amount || !order.textarea) {
       alert("กรุณากรอกข้อมูลให้ครบ");
-    } else if (order.food === "" || order.price === "" || order.amount <= 0 || order.textarea <= 0) {
+    } else if (order.food === "" || order.price <= 0|| order.amount <= 0 || order.textarea === "") {
       alert("กรุณากรอกข้อมูลให้ถูกต้อง");
     } else{
       setListOrder([order, ...list_order]);
@@ -168,8 +168,7 @@ function App() {
           setSwitch({ ...Switch, login: true });
         }
         if ('profile' === mode) {
-          setSwitch({ ...Switch, disable: true });
-          setSwitch({ ...Switch, profile: false });
+          setSwitch({ ...Switch, profile: false ,disable: true}); 
         }
       }
       else{
@@ -209,7 +208,7 @@ function App() {
           )}
           <img
             className="profile-img"
-            onClick={() => setSwitch({ ...Switch, profile: !Switch.profile })}
+            onClick={() => setSwitch({ ...Switch, profile: !Switch.profile ,disable: true})}
             src="https://icon-library.com/images/customer-login-icon/customer-login-icon-8.jpg"
           ></img>
           {Switch.profile && (
@@ -246,7 +245,7 @@ function App() {
                 }
               ></input>
               {Switch.disable && <button onClick={() => setSwitch({...Switch, disable : false})}>แก้ไข</button>}
-              {!Switch.disable && <button onClick={() => { setDatauser('profile'); setSwitch({ ...Switch, disable: true }); }}>ยืนยัน</button>}
+              {!Switch.disable && <button onClick={() => { setDatauser('profile'); }}>ยืนยัน</button>}
             </div>
           )}
         </div>
@@ -353,7 +352,7 @@ function App() {
       {Switch.popup && (
         <div className="background">
           <div className="popup-order">
-            <h2>{order.name}</h2>
+            <h2>ร้าน{order.name}</h2>
             <from>
               <input
                 className="name"
